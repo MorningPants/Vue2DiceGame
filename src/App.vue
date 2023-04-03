@@ -1,42 +1,53 @@
 <template>
-  <div id="app">
-    <nav>
-      <router-link to="/">Home</router-link>
-      <router-link to="/game">Game</router-link>
-      <router-link to="/login">Login</router-link>
-      <router-link to="/signup">Sign Up</router-link>
-    </nav>
-    <router-view />
-  </div>
+  <v-app>
+    <v-app-bar app color="primary" dark>
+      <v-toolbar-title>Dice Game</v-toolbar-title>
+      <v-spacer></v-spacer>
+      <v-btn to="/">Home</v-btn>
+      <v-btn to="/game">Game</v-btn>
+      <v-btn v-if="!isLoggedIn" to="/login">Login</v-btn>
+      <v-btn v-if="!isLoggedIn" to="/signup">Sign Up</v-btn>
+      <v-btn v-if="isLoggedIn" @click="logout">Logout</v-btn>
+    </v-app-bar>
+
+    <v-content>
+      <router-view :isLoggedIn="isLoggedIn" @logout="logout"></router-view>
+    </v-content>
+  </v-app>
 </template>
 
 <script>
 export default {
-  name: 'App'
+  name: 'App',
+  data () {
+    return {
+      isLoggedIn: false
+    }
+  },
+  methods: {
+    logout () {
+      // Add your logout logic here
+      this.isLoggedIn = false
+    }
+  }
 }
 </script>
 
+
 <style>
 #app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
-}
-
-nav {
   display: flex;
+  flex-direction: column;
   justify-content: center;
-  background-color: #f2f2f2;
-  padding: 20px 0;
+  align-items: center;
+  height: 100vh;
+  width: 100vw;
+}
+a{
+  border-radius: 5px;
+}
+header > div > a{
+  margin: 0 5px;
 }
 
-nav a {
-  margin: 0 20px;
-  color: #2c3e50;
-  text-decoration: none;
-  font-size: 18px;
-}
 </style>
