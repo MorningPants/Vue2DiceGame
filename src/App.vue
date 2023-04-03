@@ -17,17 +17,32 @@
 </template>
 
 <script>
+// export default {
+//   name: 'App',
+//   data () {
+//     return {
+//       isLoggedIn: false
+//     }
+//   },
+//   methods: {
+//     logout () {
+//       // Add your logout logic here
+//       this.isLoggedIn = false
+//     }
+//   }
+// }
+import { mapState } from 'vuex';
+
 export default {
   name: 'App',
-  data () {
-    return {
-      isLoggedIn: false
-    }
+  computed: {
+    ...mapState({
+      isLoggedIn: state => state.isLoggedIn
+    })
   },
   methods: {
     logout () {
-      // Add your logout logic here
-      this.isLoggedIn = false
+      this.$store.commit('logout');
     }
   }
 }
