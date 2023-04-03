@@ -4,7 +4,7 @@ This is a simple web application built with Vue.js and Vuetify. It allows users 
 ## Getting Started
 To get started with this project, you can follow these steps:
 
-- Clone the repository: git clone https://github.com/your-username/dice-game.git
+- Clone the repository: git clone https://github.com/MorningPants/Vue2DiceGame.git
 - Install dependencies: npm install
 - Run the application: npm run serve
 
